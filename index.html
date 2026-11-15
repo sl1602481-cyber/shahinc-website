@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>شاهین لطیفی | طراح وب و توسعه‌دهنده</title>
+    
+    <!-- فونت وزیرمتن -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ================= متغیرها و ریست ================= */
+        :root {
+            --bg: #0b0213;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #ffffff;
+            --muted: #a49fb1;
+            --primary: #8b5cf6;
+            --primary-hover: #7c3aed;
+            --gradient: linear-gradient(135deg, #a855f7, #6366f1);
+            --glow: 0 0 20px rgba(139, 92, 246, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        /* افکت‌های نور پس‌زمینه */
+        body::before, body::after {
+            content: '';
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+        body::before {
+            width: 400px; height: 400px;
+            background: #6d28d9;
+            top: -100px; right: -100px;
+        }
+        body::after {
+            width: 300px; height: 300px;
+            background: #4c1d95;
+            bottom: -100px; left: -100px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ================= نوار بالا ================= */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 800;
+            font-size: 1.2rem;
+            direction: ltr;
+        }
+
+        .logo-icon {
+            width: 35px; height: 35px;
+            background: var(--gradient);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            box-shadow: var(--glow);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: var(--muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover, nav ul li a.active {
+            color: var(--text);
+        }
+
+        .phone-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 8px 16px;
+            border-radius: 50px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .phone-btn:hover {
+            border-color: var(--primary);
+            box-shadow: var(--glow);
+        }
+
+        .phone-btn svg { width: 16px; fill: var(--primary); }
+
+        /* ================= بخش اصلی (Hero) ================= */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 60px 0;
+            gap: 40px;
+            position: relative;
+        }
+
+        .hero-text {
+            flex: 1;
+            max-width: 600px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #d8b4fe;
+            margin-bottom: 20px;
+        }
+
+        .badge svg { width: 16px; fill: #d8b4fe; }
+
+        .hero-text h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+
+        .gradient-text {
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(139, 92, 246, 0.4);
+        }
+
+        .hero-text h2 {
+            font-size: 1.1rem;
+            color: var(--muted);
+            font-weight: 400;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .hero-text h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 50px; height: 2px;
+            background: var(--primary);
+        }
+
+        .hero-text h3 {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .hero-text p {
+            color: var(--muted);
+            font-size: 1rem;
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.3s;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn svg { width: 18px; height: 18px; }
+
+        .btn-primary {
+            background: var(--gradient);
+            color: white;
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 25px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border: 1px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        /* ================= گرافیک شناور (آیکون‌ها) ================= */
+        .hero-graphic {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            min-height: 350px;
+        }
+
+        .tech-orbit {
+            position: relative;
+            width: 100%;
+            max-width: 350px;
+            aspect-ratio: 1;
+            display: grid;
+            place-items: center;
+        }
+
+        /* خط مدار */
+        .tech-orbit::before {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            border: 1px dashed rgba(139, 92, 246, 0.3);
+            border-radius: 50%;
+            animation: spin 20s linear infinite;
+        }
+
+        .tech-icon {
+            position: absolute;
+            width: 65px; height: 65px;
+            background: rgba(20, 10, 35, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5), inset 0 0 15px rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .tech-icon svg { width: 35px; height: 35px; }
+
+        /* موقعیت‌دهی آیکون‌ها روی مدار */
+        .t-html { top: 0; left: 50%; transform: translate(-50%, -50%); animation-delay: 0s; }
+        .t-css { top: 20%; right: 0; transform: translate(50%, -50%); animation-delay: 1s; }
+        .t-js { bottom: 20%; right: 0; transform: translate(50%, 50%); animation-delay: 2s; }
+        .t-python { bottom: 0; left: 50%; transform: translate(-50%, 50%); animation-delay: 3s; }
+        .t-ai { bottom: 20%; left: 0; transform: translate(-50%, 50%); animation-delay: 4s; }
+        .t-code { top: 20%; left: 0; transform: translate(-50%, -50%); animation-delay: 5s; }
+
+        /* ================= ویژگی‌ها ================= */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 60px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            background: rgba(139, 92, 246, 0.05);
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 45px; height: 45px;
+            background: rgba(139, 92, 246, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .feature-icon svg { width: 24px; fill: #a855f7; }
+
+        .feature-card h4 { font-size: 0.95rem; font-weight: 500; }
+
+        /* ================= بخش‌های پایین ================= */
+        .bottom-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            padding-bottom: 60px;
+        }
+
+        .info-box {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            padding: 30px;
+        }
+
+        .section-title {
+            margin-bottom: 25px;
+        }
+
+        .section-title h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .section-title .line {
+            width: 40px; height: 3px;
+            background: var(--primary);
+            margin-top: 8px;
+            border-radius: 5px;
+        }
+
+        /* مهارت‌ها */
+        .skills-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+        }
+
+        .skill-item {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border);
+            padding: 12px 16px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .skill-item:hover { border-color: var(--primary); }
+        .skill-item svg { width: 20px; height: 20px; }
+
+        /* درباره من */
+        .about-text {
+            color: var(--muted);
+            font-size: 0.95rem;
+            line-height: 2;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        .about-text strong { color: var(--text); }
+
+        /* ================= انیمیشن‌ها ================= */
+        @keyframes float {
+            0%, 100% { margin-top: 0; }
+            50% { margin-top: -15px; }
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ================= ریسپانسیو (موبایل و تبلت) ================= */
+        @media (max-width: 900px) {
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 40px 0;
+            }
+
+            .hero-text { max-width: 100%; }
+            .hero-text h2::after { right: 50%; transform: translateX(50%); }
+            .hero-buttons { justify-content: center; }
+
+            .hero-graphic { min-height: 300px; }
+            .tech-orbit { max-width: 260px; }
+            .tech-icon { width: 50px; height: 50px; border-radius: 12px; }
+            .tech-icon svg { width: 26px; height: 26px; }
+
+            .bottom-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            header { flex-direction: column; gap: 15px; padding: 15px 0; }
+            nav ul { display: none; /* مخفی کردن منو در موبایل برای تمیزی */ }
+            
+            .hero-text h1 { font-size: 2.2rem; }
+            .hero-text h3 { font-size: 1.2rem; }
+            .hero-buttons { flex-direction: column; width: 100%; }
+            .btn { justify-content: center; width: 100%; }
+
+            .features { grid-template-columns: 1fr; }
+            .skills-list { grid-template-columns: 1fr; }
+            
+            .info-box { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- هدر -->
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+                </div>
+                <span>Shahin Latifi</span>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">خانه</a></li>
+                    <li><a href="#about">درباره من</a></li>
+                    <li><a href="#skills">مهارت‌ها</a></li>
+                    <li><a href="#contact">تماس</a></li>
+                </ul>
+            </nav>
+
+            <a href="tel:09337391547" class="phone-btn">
+                <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                <span dir="ltr">09337391547</span>
+            </a>
+        </header>
+
+        <!-- بخش اصلی -->
+        <section class="hero">
+            <div class="hero-text">
+                <div class="badge">
+                    <span>طراح وب و توسعه‌دهنده</span>
+                    <svg viewBox="0 0 24 24"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6" stroke="currentColor" fill="none" stroke-width="2"/></svg>
+                </div>
+                
+                <h1>شاهین <span class="gradient-text">لطیفی</span></h1>
+                <h2>مدیریت مالی | طراح وب و توسعه‌دهنده</h2>
+                
+                <h3>من برای شما وب سایت‌های<br>تمیز، شیک و <span style="color: #d8b4fe;">مدرن</span> طراحی می‌کنم</h3>
+                
+                <p>طراحی سایت‌های حرفه‌ای، فروشگاهی و شخصی با جدیدترین تکنولوژی‌ها و کاملاً سازگار با موبایل و تبلت.</p>
+
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-outline">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                        تماس با من
+                    </a>
+                    <a href="#order" class="btn btn-primary">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        مشاوره و سفارش پروژه
+                    </a>
+                </div>
+            </div>
+
+            <!-- گرافیک آیکون‌ها -->
+            <div class="hero-graphic">
+                <div class="tech-orbit">
+                    <!-- HTML -->
+                    <div class="tech-icon t-html">
+                        <svg viewBox="0 0 24 24" fill="#e34f26"><path d="M12 2L2 4.5l2 15L12 22l8-2.5 2-15L12 2zm5.5 17.5L12 20.5 5.5 19.5 4 6h16l-2.5 13.5z"/></svg>
+                    </div>
+                    <!-- CSS -->
+                    <div class="tech-icon t-css">
+                        <svg viewBox="0 0 24 24" fill="#1572b6"><path d="M12 2L2 4.5l2 15L12 22l8-2.5 2-15L12 2zm5.5 17.5L12 20.5 5.5 19.5 4 6h16l-2.5 13.5z"/></svg>
+                    </div>
+                    <!-- JS -->
+                    <div class="tech-icon t-js">
+                        <svg viewBox="0 0 24 24" fill="#f7df1e"><path d="M3 3h18v18H3V3zm11.5 13.5c.5.8 1.2 1.5 2.5 1.5 1.2 0 2-.6 2-1.5 0-1-.8-1.5-2.2-2-1.5-.5-2.5-1-2.5-2.5 0-1.5 1.2-2.5 2.8-2.5 1.2 0 2 .5 2.5 1.2l-1.2 1c-.3-.5-.8-.8-1.3-.8-.6 0-1 .3-1 .8 0 .5.4.8 1.5 1.2 1.5.5 2.5 1.2 2.5 2.8 0 1.8-1.3 2.8-3.2 2.8-1.6 0-2.8-.8-3.5-2l1.1-1zM8.5 16.5c.3.5.8 1 1.5 1 .7 0 1-.4 1-1v-6h1.5v6c0 1.5-1 2.5-2.5 2.5-1.3 0-2.2-.7-2.5-1.5l1-1z"/></svg>
+                    </div>
+                    <!-- Python -->
+                    <div class="tech-icon t-python">
+                        <svg viewBox="0 0 24 24" fill="#3776ab"><path d="M14 4c-2.2 0-4 1.8-4 4v2h4v2H6V8c0-3.3 2.7-6 6-6h2zm-4 16c2.2 0 4-1.8 4-4v-2h-4v-2h8v4c0 3.3-2.7 6-6 6h-2z"/></svg>
+                    </div>
+                    <!-- AI -->
+                    <div class="tech-icon t-ai">
+                        <svg viewBox="0 0 24 24" fill="#a855f7"><path d="M12 2a2 2 0 0 1 2 2v2h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4V4a2 2 0 0 1 2-2zm0 6H6v12h12V8h-6zm-2 4h4v2h-4v-2z"/></svg>
+                    </div>
+                    <!-- Code -->
+                    <div class="tech-icon t-code">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ویژگی‌ها -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+                <h4>طراحی مدرن و خلاقانه</h4>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+                <h4>سرعت بالا و بهینه‌سازی</h4>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+                <h4>امنیت بالا و مطمئن</h4>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v10z"/></svg></div>
+                <h4>پشتیبانی دائمی و حرفه‌ای</h4>
+            </div>
+        </section>
+
+        <!-- بخش پایین -->
+        <section class="bottom-grid">
+            <!-- مهارت‌ها -->
+            <div class="info-box" id="skills">
+                <div class="section-title">
+                    <h3>مهارت‌های من</h3>
+                    <div class="line"></div>
+                </div>
+                <div class="skills-list">
+                    <div class="skill-item">
+                        <span>HTML5</span>
+                        <svg viewBox="0 0 24 24" fill="#e34f26"><path d="M12 2L2 4.5l2 15L12 22l8-2.5 2-15L12 2zm5.5 17.5L12 20.5 5.5 19.5 4 6h16l-2.5 13.5z"/></svg>
+                    </div>
+                    <div class="skill-item">
+                        <span>CSS3</span>
+                        <svg viewBox="0 0 24 24" fill="#1572b6"><path d="M12 2L2 4.5l2 15L12 22l8-2.5 2-15L12 2zm5.5 17.5L12 20.5 5.5 19.5 4 6h16l-2.5 13.5z"/></svg>
+                    </div>
+                    <div class="skill-item">
+                        <span>JavaScript</span>
+                        <svg viewBox="0 0 24 24" fill="#f7df1e"><path d="M3 3h18v18H3V3zm11.5 13.5c.5.8 1.2 1.5 2.5 1.5 1.2 0 2-.6 2-1.5 0-1-.8-1.5-2.2-2-1.5-.5-2.5-1-2.5-2.5 0-1.5 1.2-2.5 2.8-2.5 1.2 0 2 .5 2.5 1.2l-1.2 1c-.3-.5-.8-.8-1.3-.8-.6 0-1 .3-1 .8 0 .5.4.8 1.5 1.2 1.5.5 2.5 1.2 2.5 2.8 0 1.8-1.3 2.8-3.2 2.8-1.6 0-2.8-.8-3.5-2l1.1-1zM8.5 16.5c.3.5.8 1 1.5 1 .7 0 1-.4 1-1v-6h1.5v6c0 1.5-1 2.5-2.5 2.5-1.3 0-2.2-.7-2.5-1.5l1-1z"/></svg>
+                    </div>
+                    <div class="skill-item">
+                        <span>Python</span>
+                        <svg viewBox="0 0 24 24" fill="#3776ab"><path d="M14 4c-2.2 0-4 1.8-4 4v2h4v2H6V8c0-3.3 2.7-6 6-6h2zm-4 16c2.2 0 4-1.8 4-4v-2h-4v-2h8v4c0 3.3-2.7 6-6 6h-2z"/></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- درباره من -->
+            <div class="info-box" id="about">
+                <div class="section-title">
+                    <h3>درباره من</h3>
+                    <div class="line"></div>
+                </div>
+                <p class="about-text">
+                    من <strong>شاهین لطیفی</strong> هستم؛ دارای مدرک <strong>لیسانس مدیریت مالی</strong> و فعال در حوزه طراحی وب. با ترکیب دانش مالی و مهارت‌های فنی، به شما کمک می‌کنم تا کسب‌وکار خود را در دنیای دیجیتال به بهترین شکل معرفی کنید.
+                </p>
+                <a href="#" class="btn btn-primary" style="padding: 10px 20px; font-size: 0.9rem;">
+                    بیشتر بدانید
+                </a>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>
